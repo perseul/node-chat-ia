@@ -16,8 +16,11 @@ class SettingsService {
     async create({ chat, username } : ISettingsCreate) {
 
         //select *from settings where username = "username" limit 1;
-        const userAlreadyExists = await this.settingsRepository.findOne({
-          username,
+        const userAlreadyExists = await this.settingsRepository.findOne(
+        {
+            where: {
+                'username': username
+            }
         });
 
         if (userAlreadyExists) {
@@ -35,8 +38,11 @@ class SettingsService {
     }
 
     async findByUsername (username: string) {
-        const settings = await this.settingsRepository.findOne({
-            username,
+        const settings = await this.settingsRepository.findOne(
+        {
+            where: {
+                'username': username
+            }
         });
         return settings;
     }
