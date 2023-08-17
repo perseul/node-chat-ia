@@ -29,7 +29,13 @@ class ConnectionsService {
   }
 
   async findByUserID(user_id: string) {
-    const connection = this.connectionsRepository.findOne({ user_id });
+    const connection = this.connectionsRepository.findOne(
+      { 
+        where: {
+            'user_id' : user_id
+        },
+        relations: ['user'],        
+      });
 
     return connection;
   }
@@ -46,7 +52,12 @@ class ConnectionsService {
   }
 
   async findBySocketID(socket_id: string) {
-    const connection = this.connectionsRepository.findOne({ socket_id });
+    const connection = this.connectionsRepository.findOne(
+      { 
+        where:{
+          'socket_id' : socket_id
+        }
+       });
 
     return connection;
   }
