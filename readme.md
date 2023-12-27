@@ -4,7 +4,14 @@
 _Aplicação de chat de atendimento ao cliente_
 
 ### How To (como usar)
- - _Digite o seguinte comando para iniciar o servidor (certifique-se de ter o Node instalado em sua maquina)_
+- _É necessario ter o Node.js instalado em sua maquina para executar os comandos npm no seu console (cmd) https://nodejs.org/pt-br/download_ 
+
+- _digite o seguinte comando para instalar as dependecias do projeto (esse comando irá criar a pasta: node_modules no seu projeto_
+```
+npm install
+```
+
+ - _Com a pasta node_modules em seu projeto, digite o seguinte comando para iniciar o servidor (certifique-se de ter o Node instalado em sua maquina)_
 
 ```
 npm run dev
