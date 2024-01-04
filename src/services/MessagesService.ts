@@ -1,6 +1,8 @@
-import { getCustomRepository, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { Message } from '../entities/Message';
 import { MessagesRepository } from "../repositories/MessagesRepository";
+import { appDataSource } from "../database";
+import { GetCustomRepo } from "../repositories/GetCustomRepo";
 
 interface IMessageCreate {
     admin_id?: string;
@@ -12,7 +14,7 @@ class MessagesService {
     private messagesRepository: Repository<Message>;
 
     constructor() {
-        this.messagesRepository = getCustomRepository(MessagesRepository);
+        this.messagesRepository = GetCustomRepo(Message, MessagesRepository, appDataSource)
     }
     
     async create( { admin_id, text, user_id }: IMessageCreate) {

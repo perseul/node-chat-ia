@@ -1,7 +1,10 @@
-import { getCustomRepository } from 'typeorm';
+import { DataSource, Repository,  } from 'typeorm';
 import { Connection } from '../entities/Connection';
+import { GetCustomRepo } from '../repositories/GetCustomRepo'
+
 
 import { ConnectionsRepository } from '../repositories/ConnectionsRepository';
+import { appDataSource } from '../database';
 
 interface IConnectionCreate {
   socket_id: string;
@@ -14,7 +17,7 @@ class ConnectionsService {
   private connectionsRepository: ConnectionsRepository;
 
   constructor() {
-    this.connectionsRepository = getCustomRepository(ConnectionsRepository);
+    this.connectionsRepository = GetCustomRepo(Connection,ConnectionsRepository, appDataSource)
   }
 
   async create({ socket_id, user_id, admin_id, id }: IConnectionCreate) {

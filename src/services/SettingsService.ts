@@ -1,6 +1,8 @@
-import { getCustomRepository, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Setting } from '../entities/Setting';
 import { SettingsRepository } from '../repositories/SettingsRepository';
+import { appDataSource } from '../database';
+import { GetCustomRepo } from '../repositories/GetCustomRepo';
 
 interface ISettingsCreate {
     chat: boolean;
@@ -10,7 +12,7 @@ interface ISettingsCreate {
 class SettingsService {
     private settingsRepository: Repository<Setting>;
     constructor() {
-        this.settingsRepository = getCustomRepository(SettingsRepository);
+        this.settingsRepository =  GetCustomRepo(Setting, SettingsRepository, appDataSource)
     }
 
     async create({ chat, username } : ISettingsCreate) {
